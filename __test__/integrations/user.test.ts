@@ -1,3 +1,5 @@
+import "reflect-metadata";
+import "../../src/config/container";
 import { YogaServerInstance } from "graphql-yoga";
 import { App } from "../../src/config/app";
 import { ContextType } from "../../src/schema/context";
@@ -13,6 +15,7 @@ import {
   createUserTestHelper,
 } from "../__helpers__/user-test-helper";
 import { User } from "../../src/app/entity/user";
+import { container } from "tsyringe";
 
 describe("User test integration", () => {
   let yoga: YogaServerInstance<{}, ContextType>;
@@ -23,7 +26,7 @@ describe("User test integration", () => {
   let token: string;
 
   beforeAll(async () => {
-    const app = new App();
+    const app = container.resolve(App);
     yoga = app.createYogaApp();
     db = app.db;
 

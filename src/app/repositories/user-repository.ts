@@ -1,10 +1,12 @@
 import { Knex } from "knex";
 import { User } from "../entity/user";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class UserRepository {
   private user: Knex.QueryBuilder<User, User[]>;
 
-  constructor(knex: Knex) {
+  constructor(@inject("knex") knex: Knex) {
     this.user = knex.table("users");
   }
 

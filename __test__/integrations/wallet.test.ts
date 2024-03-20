@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+import '../../src/config/container'
 import { YogaServerInstance } from "graphql-yoga";
 import { App } from "../../src/config/app";
 import { ContextType } from "../../src/schema/context";
@@ -12,10 +14,10 @@ import {
   authenticatedUser,
   createUserTestHelper,
 } from "../__helpers__/user-test-helper";
-import { User } from "../../src/app/entity/user";
 import { createWalletTestHelper } from "../__helpers__/wallet-test-helper";
+import { container } from 'tsyringe';
 
-describe("User test integration", () => {
+describe("Wallet test integration", () => {
   let yoga: YogaServerInstance<{}, ContextType>;
   let db: Knex;
   let executor: AsyncExecutor<any, HTTPExecutorOptions>;
@@ -25,7 +27,7 @@ describe("User test integration", () => {
   let id: string;
 
   beforeAll(async () => {
-    const app = new App();
+    const app = container.resolve(App)
     yoga = app.createYogaApp();
     db = app.db;
 

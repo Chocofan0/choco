@@ -5,13 +5,15 @@ import knex, { Knex } from "knex";
 import { dbConfig } from "./database";
 import { schema } from "../schema";
 import { authPlugin } from "../schema/plugins/auth-plugins";
+import { inject, injectable } from "tsyringe";
 
+@injectable()
 export class App {
   public db: Knex;
   public express: e.Express;
 
-  constructor() {
-    this.db = knex(dbConfig);
+  constructor(@inject("knex") knex: Knex) {
+    this.db = knex;
     this.express = e();
     this.middleware();
   }

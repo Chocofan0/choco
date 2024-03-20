@@ -1,5 +1,6 @@
 import { Knex } from "knex";
 import { Wallet } from "../entity/wallet";
+import { inject, injectable } from "tsyringe";
 
 type FindArguments = {
   userId: string;
@@ -8,10 +9,11 @@ type FindArguments = {
   limit: number;
 };
 
+@injectable()
 export class WalletRepository {
   private wallet: Knex.QueryBuilder<Wallet, Wallet[]>;
 
-  constructor(knex: Knex) {
+  constructor(@inject("knex") knex: Knex) {
     this.wallet = knex("wallet");
   }
 
