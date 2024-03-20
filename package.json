@@ -1,0 +1,39 @@
+{
+  "name": "choco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --setupFiles dotenv/config",
+    "migrate:up": "knex migrate:up"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.3",
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^5.2.0",
+    "ioredis": "^5.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "tsyringe": "^4.8.0"
+  },
+  "devDependencies": {
+    "@graphql-tools/executor-http": "^1.0.9",
+    "@graphql-tools/utils": "^10.1.2",
+    "@swc/cli": "^0.3.10",
+    "@swc/core": "^1.4.8",
+    "@swc/jest": "^0.2.36",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/supertest": "^6.0.2",
+    "dotenv": "^16.4.5",
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.2"
+  }
+}

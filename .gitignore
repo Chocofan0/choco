@@ -1,0 +1,5 @@
+node_modules
+docker-compose.yaml
+package-lock.json
+.env
+knexfile.js
