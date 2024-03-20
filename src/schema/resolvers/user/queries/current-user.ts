@@ -1,6 +1,6 @@
 import { GraphQLError, GraphQLFieldConfig, GraphQLObjectType } from "graphql";
-import { ContextType } from "../../context";
-import { userType } from "../../../app/entity/user";
+import { ContextType } from "../../../context";
+import { userType } from "../../../../app/entity/user";
 
 export const CurrentUser: GraphQLFieldConfig<unknown, ContextType> = {
   type: new GraphQLObjectType({

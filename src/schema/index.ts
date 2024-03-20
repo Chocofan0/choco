@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLSchema } from "graphql";
-import { CurrentUser as currentUser } from "./resolvers/user/current-user";
-import { walletQuery } from "./resolvers/wallet/walllet";
+import { CurrentUser as currentUser } from "./resolvers/user/queries/current-user";
+import { walletQuery } from "./resolvers/wallet/queries/walllet";
 
 export const schema = new GraphQLSchema({
   query: new GraphQLObjectType({

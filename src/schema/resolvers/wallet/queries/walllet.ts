@@ -5,8 +5,8 @@ import {
   GraphQLObjectType,
   GraphQLString,
 } from "graphql";
-import { ContextType } from "../../context";
-import { walletType } from "../../../app/entity/wallet";
+import { ContextType } from "../../../context";
+import { walletType } from "../../../../app/entity/wallet";
 
 export const walletQuery: GraphQLFieldConfig<undefined, ContextType> = {
   type: new GraphQLObjectType(walletType),
