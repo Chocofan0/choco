@@ -1,4 +1,9 @@
-import { GraphQLInt, GraphQLObjectTypeConfig, GraphQLString } from "graphql";
+import {
+  GraphQLEnumTypeConfig,
+  GraphQLInt,
+  GraphQLObjectTypeConfig,
+  GraphQLString,
+} from "graphql";
 
 export type Wallet = {
   id: string;
@@ -15,5 +20,26 @@ export const walletType: GraphQLObjectTypeConfig<any, any> = {
     id: { type: GraphQLString },
     name: { type: GraphQLString },
     balance: { type: GraphQLInt },
+  },
+};
+
+export const orderWalletType: GraphQLEnumTypeConfig = {
+  name: "WALLET_ORDER_ENUM",
+  values: {
+    CREATED_AT: {
+      value: "created_at",
+    },
+  },
+};
+
+export const sortWalletType: GraphQLEnumTypeConfig = {
+  name: "WALLET_SORT_ENUM",
+  values: {
+    ASC: {
+      value: "asc",
+    },
+    DESC: {
+      value: "desc",
+    },
   },
 };

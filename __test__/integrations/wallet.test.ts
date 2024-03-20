@@ -58,6 +58,25 @@ describe("User test integration", () => {
     expect(result).not.toHaveProperty("errors");
   });
 
+  it("Get All wallet", async () => {
+    const result = await executor({
+      document: parse(/* GraphQL */ `
+        query {
+          allWallet {
+            id
+          }
+        }
+      `),
+      extensions: {
+        headers: {
+          Authorization: token,
+        },
+      },
+    });
+
+    expect(result).not.toHaveProperty("errors");
+  });
+
   afterAll(async () => {
     await db.table("users").where("id", uid).del();
     await db.table("wallet").where("id", id).del();
