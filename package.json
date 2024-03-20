@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --setupFiles dotenv/config",
-    "migrate:up": "knex migrate:up"
+    "migrate:up": "knex migrate:up",
+    "build": "swc src -d dist"
   },
   "author": "",
   "license": "ISC",
