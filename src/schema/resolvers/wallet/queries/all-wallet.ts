@@ -1,4 +1,5 @@
 import {
+  GraphQLBoolean,
   GraphQLEnumType,
   GraphQLFieldConfig,
   GraphQLInt,
@@ -13,14 +14,19 @@ import {
 } from "../../../../app/entity/wallet";
 
 export const allWallet: GraphQLFieldConfig<unknown, ContextType> = {
-  type: new GraphQLList(
-    new GraphQLObjectType({
-      name: "AllWalletResponse",
-      fields: {
-        ...walletType.fields,
+  type: new GraphQLObjectType({
+    name: "ArrayWalletResponse",
+    fields: {
+      edge: {
+        type: new GraphQLList(
+          new GraphQLObjectType({
+            name: "WalletEdge",
+            fields: walletType.fields,
+          })
+        ),
       },
-    })
-  ),
+    },
+  }),
 
   extensions: {
     reqAuth: true,
@@ -47,6 +53,6 @@ export const allWallet: GraphQLFieldConfig<unknown, ContextType> = {
       userId: context.id,
     });
 
-    return result;
+    return { edge: result };
   },
 };

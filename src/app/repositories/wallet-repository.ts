@@ -27,11 +27,15 @@ export class WalletRepository {
     return wallet[0];
   }
 
-  public async insert(data: Partial<Wallet>) {
+  public async insert(data: Partial<Wallet>, t?: Knex.Transaction) {
     try {
-      const result = await this.wallet
-        .insert({ ...data } as unknown as Wallet)
-        .returning("id");
+      this.wallet.insert({ ...data } as unknown as Wallet);
+
+      if (t) {
+        this.wallet.transacting(t);
+      }
+
+      const result = await this.wallet.returning("id");
 
       return result[0].id;
     } catch (error) {

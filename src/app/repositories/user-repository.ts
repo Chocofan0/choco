@@ -20,11 +20,15 @@ export class UserRepository {
     return user[0];
   }
 
-  public async insert(data: Partial<User>) {
+  public async insert(data: Partial<User>, t?: Knex.Transaction) {
     try {
-      const result = await this.user
-        .insert({ ...data } as unknown as User)
-        .returning("id");
+      this.user.insert({ ...data } as unknown as User);
+
+      if (t) {
+        this.user.transacting(t);
+      }
+
+      const result = await this.user.returning("id");
 
       return result[0].id;
     } catch (error) {

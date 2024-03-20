@@ -65,7 +65,9 @@ describe("Wallet test integration", () => {
       document: parse(/* GraphQL */ `
         query {
           allWallet {
-            id
+            edge {
+              id
+            }
           }
         }
       `),
@@ -75,6 +77,7 @@ describe("Wallet test integration", () => {
         },
       },
     });
+
 
     expect(result).not.toHaveProperty("errors");
   });
