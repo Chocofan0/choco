@@ -5,6 +5,8 @@ export type Wallet = {
   name: string;
   balance: number;
   user_id: string;
+  created_at: Date;
+  updated_at: Date;
 };
 
 export const walletType: GraphQLObjectTypeConfig<any, any> = {

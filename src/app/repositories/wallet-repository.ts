@@ -1,6 +1,13 @@
 import { Knex } from "knex";
 import { Wallet } from "../entity/wallet";
 
+type FindArguments = {
+  userId: string;
+  order: Pick<Wallet, "created_at">;
+  sort: "ASC" | "DESC";
+  limit: number;
+};
+
 export class WalletRepository {
   private wallet: Knex.QueryBuilder<Wallet, Wallet[]>;
 
@@ -28,5 +35,21 @@ export class WalletRepository {
     } catch (error) {
       throw new Error("internal server error");
     }
+  }
+
+  public async findMany(args: FindArguments) {
+    if (args.userId) {
+      this.wallet.where("user_id", args.userId);
+    }
+
+    if (args.order) {
+      if (args.sort) {
+        this.wallet.orderBy(args.order as any, args.sort);
+      } else {
+        this.wallet.orderBy(args.order as any, "desc");
+      }
+    }
+
+    return this.wallet.limit(args.limit ?? 5);
   }
 }
