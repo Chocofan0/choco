@@ -17,10 +17,10 @@ export const allWallet: GraphQLFieldConfig<unknown, ContextType> = {
   type: new GraphQLObjectType({
     name: "ArrayWalletResponse",
     fields: {
-      edge: {
+      edges: {
         type: new GraphQLList(
           new GraphQLObjectType({
-            name: "WalletEdge",
+            name: "EdgesWallet",
             fields: walletType.fields,
           })
         ),
@@ -53,6 +53,13 @@ export const allWallet: GraphQLFieldConfig<unknown, ContextType> = {
       userId: context.id,
     });
 
-    return { edge: result };
+
+    return {
+      edges: [
+        {
+          node: result,
+        },
+      ],
+    };
   },
 };

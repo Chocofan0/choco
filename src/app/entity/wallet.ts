@@ -1,6 +1,7 @@
 import {
   GraphQLEnumTypeConfig,
   GraphQLInt,
+  GraphQLObjectType,
   GraphQLObjectTypeConfig,
   GraphQLString,
 } from "graphql";
@@ -14,12 +15,20 @@ export type Wallet = {
   updated_at: Date;
 };
 
-export const walletType: GraphQLObjectTypeConfig<any, any> = {
-  name: "Wallet",
+const Node = new GraphQLObjectType({
+  name: "NodeWallet",
   fields: {
     id: { type: GraphQLString },
     name: { type: GraphQLString },
-    balance: { type: GraphQLInt },
+  },
+});
+
+export const walletType: GraphQLObjectTypeConfig<any, any> = {
+  name: "WalletResponse",
+  fields: {
+    node: {
+      type: Node,
+    },
   },
 };
 

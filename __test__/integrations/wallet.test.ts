@@ -1,5 +1,5 @@
-import 'reflect-metadata'
-import '../../src/config/container'
+import "reflect-metadata";
+import "../../src/config/container";
 import { YogaServerInstance } from "graphql-yoga";
 import { App } from "../../src/config/app";
 import { ContextType } from "../../src/schema/context";
@@ -15,7 +15,7 @@ import {
   createUserTestHelper,
 } from "../__helpers__/user-test-helper";
 import { createWalletTestHelper } from "../__helpers__/wallet-test-helper";
-import { container } from 'tsyringe';
+import { container } from "tsyringe";
 
 describe("Wallet test integration", () => {
   let yoga: YogaServerInstance<{}, ContextType>;
@@ -27,7 +27,7 @@ describe("Wallet test integration", () => {
   let id: string;
 
   beforeAll(async () => {
-    const app = container.resolve(App)
+    const app = container.resolve(App);
     yoga = app.createYogaApp();
     db = app.db;
 
@@ -45,7 +45,9 @@ describe("Wallet test integration", () => {
       document: parse(/* GraphQL */ `
         query Wallet($id: String!) {
           wallet(id: $id) {
-            id
+            node {
+              id
+            }
           }
         }
       `),
@@ -57,6 +59,7 @@ describe("Wallet test integration", () => {
       variables: { id },
     });
 
+
     expect(result).not.toHaveProperty("errors");
   });
 
@@ -65,8 +68,10 @@ describe("Wallet test integration", () => {
       document: parse(/* GraphQL */ `
         query {
           allWallet {
-            edge {
-              id
+            edges {
+              node {
+                id
+              }
             }
           }
         }
@@ -77,7 +82,6 @@ describe("Wallet test integration", () => {
         },
       },
     });
-
 
     expect(result).not.toHaveProperty("errors");
   });

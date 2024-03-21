@@ -30,6 +30,8 @@ export const walletQuery: GraphQLFieldConfig<undefined, ContextType> = {
       throw new GraphQLError("not allowed operation");
     }
 
-    return wallet;
+    return {
+      node: wallet,
+    };
   },
 };
