@@ -24,7 +24,7 @@ const Node = new GraphQLObjectType({
 });
 
 export const walletType: GraphQLObjectTypeConfig<any, any> = {
-  name: "WalletResponse",
+  name: "Wallet",
   fields: {
     node: {
       type: Node,
